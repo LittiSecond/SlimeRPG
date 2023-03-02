@@ -76,6 +76,14 @@ namespace SlimeRpg
             PooledObject obj = null;
 
             int index = GetIndexGroupOfType(type);
+            if (index == CODE_NOT_EXIST_TYPE)
+            {
+                if (TryPrepareObject(type))
+                {
+                    index = _objectsGroupsList.Count - 1;
+                }
+            }
+
             if (index != CODE_NOT_EXIST_TYPE)
             {
                 ObjGroup group = _objectsGroupsList[index];
@@ -208,6 +216,30 @@ namespace SlimeRpg
             obj.IsUsed = false;
             obj.gameObject.SetActive(false);
         }
+
+        public bool TryPrepareObject(string type)
+        {
+            bool isPrepared = false;
+
+            GameObject prefabGO = ResourcesLoader.GetPrefab(type);
+            if (prefabGO != null)
+            {
+                PooledObject obj = prefabGO.GetComponent<PooledObject>();
+                if (obj != null)
+                {
+                    if (obj.Type.Equals(type))
+                    {
+                        ObjGroup group = new ObjGroup(type);
+                        group._prefab = obj;
+                        _objectsGroupsList.Add(group);
+                        isPrepared = true;
+                    }
+                }
+            }
+
+            return isPrepared;
+        }
+
 
         #endregion
     }

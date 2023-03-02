@@ -31,7 +31,7 @@ namespace SlimeRpg
                 worldBuilder
             };
 
-
+            Services.Instance.GameStateManager.SetControllers(worldBuilder, groundMovementController);
         }
 
         #endregion

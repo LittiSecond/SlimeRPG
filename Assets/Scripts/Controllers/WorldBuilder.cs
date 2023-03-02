@@ -40,7 +40,7 @@ namespace SlimeRpg
         public void StartWorldBuilding()
         {
             BuildGroundPart(FIRST_GROUND_X_POZITION);
-            _isEnabled = true;
+            _isEnabled = _groundsInWorld.Count > 0;
         }
 
         private void BuildGroundPart(float xPosition)
@@ -84,17 +84,20 @@ namespace SlimeRpg
         {
             if (_isEnabled)
             {
-                GroundPart groundPart = _groundsInWorld[0];
-                if (groundPart.transform.position.x <= X_POSITION_REMOVE_GROUND)
+                if (_groundsInWorld.Count > 0)
                 {
-                    RemoveFirstGroundPart();
-                }
+                    GroundPart groundPart = _groundsInWorld[0];
+                    if (groundPart.transform.position.x <= X_POSITION_REMOVE_GROUND)
+                    {
+                        RemoveFirstGroundPart();
+                    }
 
-                groundPart = _groundsInWorld[_groundsInWorld.Count - 1];
-                float xPosition = groundPart.transform.position.x;
-                if (xPosition <= X_POSITION_ADD_GROUND)
-                {
-                    BuildGroundPart(xPosition + GROUND_X_SIZE);
+                    groundPart = _groundsInWorld[_groundsInWorld.Count - 1];
+                    float xPosition = groundPart.transform.position.x;
+                    if (xPosition <= X_POSITION_ADD_GROUND)
+                    {
+                        BuildGroundPart(xPosition + GROUND_X_SIZE);
+                    }
                 }
             }
         }

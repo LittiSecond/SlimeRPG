@@ -18,9 +18,9 @@ namespace SlimeRpg
         private void Start()
         {
 
-
             _controllers = new Controllers(DefaultGamePlaySettings);
 
+            Services.Instance.GameStateManager.StartGame();
         }
 
 
