@@ -22,7 +22,8 @@ namespace SlimeRpg
         public Controllers(GamePlaySettings gamePlaySettings)
         {
             GroundMovementController groundMovementController = new GroundMovementController(gamePlaySettings);
-            WorldBuilder worldBuilder = new WorldBuilder(groundMovementController);
+            WorldBuildLogick worldBuildLogick = new WorldBuildLogick();
+            WorldBuilder worldBuilder = new WorldBuilder(groundMovementController, worldBuildLogick);
 
             _executeControllers = new IExecutable[]
             {
