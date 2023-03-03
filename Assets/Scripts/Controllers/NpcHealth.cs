@@ -44,6 +44,11 @@ namespace SlimeRpg
             OnHealthChanged?.Invoke(_currentHealth);
         }
 
+        public void SetMaxHealth(int maxHealth)
+        {
+            _maxHealth = maxHealth;
+        }
+
         #endregion
 
 

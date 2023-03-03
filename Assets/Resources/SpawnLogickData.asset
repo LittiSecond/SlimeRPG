@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: SpawnLogickData
   m_EditorClassIdentifier: 
   SpawnPosition: {x: 2, y: 0.1, z: -6}
-  SpawnInterval: 4
+  HealthStep: 1
+  AttackStep: 1
+  StartHealth: 5
+  StartAttack: 3
+  SpawnInterval: 2.5
+  Count: 5
+  IntervalBetweenSteps: 5
