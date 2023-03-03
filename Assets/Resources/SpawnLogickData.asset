@@ -17,6 +17,6 @@ MonoBehaviour:
   AttackStep: 1
   StartHealth: 5
   StartAttack: 3
-  SpawnInterval: 2.5
+  SpawnInterval: 2
   Count: 5
   IntervalBetweenSteps: 5
