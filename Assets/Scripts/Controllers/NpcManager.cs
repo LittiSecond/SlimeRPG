@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SlimeRpg
 {
-    public sealed class NpcManager : IExecutable
+    public sealed class NpcManager : IExecutable, INpcLocator
     {
         #region Fields
 
@@ -101,5 +101,19 @@ namespace SlimeRpg
 
         #endregion
 
+
+        #region INpcLocator
+
+        public Vector3? GetNearestNpcPosition()
+        {
+            if (_npcOnField.Count == 0)
+            {
+                return null;
+            }
+
+            return _npcOnField[0].transform.position;
+        }
+
+        #endregion
     }
 }

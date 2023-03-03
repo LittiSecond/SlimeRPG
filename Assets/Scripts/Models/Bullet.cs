@@ -11,6 +11,7 @@ namespace SlimeRpg
         [SerializeField] private Rigidbody _rigidbody;
 
         private float _speed;
+        private float _gravity;
         private int _power;
         private SceneLayers _targetLayer;
 
@@ -18,6 +19,11 @@ namespace SlimeRpg
 
 
         #region UnityMethods
+
+        private void Awake()
+        {
+            _gravity = Physics.gravity.y;
+        }
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -62,8 +68,18 @@ namespace SlimeRpg
         {
             Vector3 direction = worldTargetPosition - transform.position;
             direction.y = 0.0f;
+            float distance = direction.magnitude;
+            float time = distance / _speed;
+            float yVelosity = -_gravity * time / 2;
             direction.Normalize();
-            return direction * _speed;
+            Vector3 newVelosity = direction * _speed;
+            newVelosity.y = yVelosity;
+            return newVelosity;
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            transform.position = position;
         }
 
         #endregion

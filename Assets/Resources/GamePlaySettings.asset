@@ -15,3 +15,10 @@ MonoBehaviour:
   GroundSpeed: 1.5
   ChangeSpeedDuration: 2
   SpawnLogickData: {fileID: 11400000, guid: bcea3c394c811624cb597c1a6de1d09e, type: 2}
+  SlimePosition: {x: -1, y: 0.2, z: -6}
+  BaseSlimeHealth: 5
+  BaseAttackPower: 2
+  BaseAttackSpeed: 2
+  AttackIntervalMultipler: 2
+  AttackRange: 1.8
+  BulletSpeed: 3

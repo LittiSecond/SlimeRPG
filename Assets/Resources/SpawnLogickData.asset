@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c525a8e5a240a5e42b802d24d45dc38d, type: 3}
   m_Name: SpawnLogickData
   m_EditorClassIdentifier: 
-  SpawnPosition: {x: 2, y: 0.25, z: -6}
+  SpawnPosition: {x: 2, y: 0.1, z: -6}
   SpawnInterval: 4
