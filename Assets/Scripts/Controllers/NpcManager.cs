@@ -11,6 +11,7 @@ namespace SlimeRpg
 
         private readonly List<NpcBaseLogick> _npcOnField;
         private readonly NpcSpawner _npcSpawner;
+        private readonly IGroundMovementControll _groundMovementControll;
 
         private bool _isSpawnEnabled;
         private bool _isNpcLogickEnabled;
@@ -20,10 +21,11 @@ namespace SlimeRpg
 
         #region ClassLifeCycles
 
-        public NpcManager(GamePlaySettings gps)
+        public NpcManager(GamePlaySettings gps, IGroundMovementControll gmc)
         {
             _npcOnField = new List<NpcBaseLogick>();
             _npcSpawner = new NpcSpawner(this, OnDestroyNpc, gps.SpawnLogickData);
+            _groundMovementControll = gmc;
         }
 
         #endregion
@@ -58,6 +60,7 @@ namespace SlimeRpg
         public void AddNpc(NpcBaseLogick newNpc)
         {
             _npcOnField.Add(newNpc);
+            _groundMovementControll.StopMovement();
         }
 
         private void ExecuteNpcLogick()
@@ -72,6 +75,10 @@ namespace SlimeRpg
         {
             _npcOnField.Remove(npc);
             npc.OnDestroy -= OnDestroyNpc;
+            if (_npcOnField.Count == 0)
+            {
+                _groundMovementControll.StartMovement();
+            }
         }
 
         #endregion

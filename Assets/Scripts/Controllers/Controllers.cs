@@ -27,7 +27,7 @@ namespace SlimeRpg
 
             SlimeManager slimeManager = new SlimeManager();
 
-            NpcManager npcManager = new NpcManager(gamePlaySettings);
+            NpcManager npcManager = new NpcManager(gamePlaySettings, groundMovementController);
 
             _executeControllers = new IExecutable[]
             {

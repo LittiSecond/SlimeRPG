@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SlimeRpg
 {
-    public sealed class GroundMovementController : IExecutable
+    public sealed class GroundMovementController : IExecutable, IGroundMovementControll
     {
 
         #region Fields
@@ -46,35 +46,6 @@ namespace SlimeRpg
         public void RemoveGroundPart(Transform groundPart)
         {
             _grounds.Remove(groundPart);
-        }
-
-        public void StartMovement()
-        {
-            //if (_currentSpeed < _normalSpeed)
-            //{
-            //    if (_acceleration < 0.0f)
-            //    {
-            //        _acceleration *= -1.0f;
-            //    }
-            //    _shouldChangeSpeed = true;
-            //    _shouldMove = true;
-            //}
-            _currentSpeed = _normalSpeed;
-            _shouldMove = true;
-        }
-
-        public void StopMovement()
-        {
-            //if (_currentSpeed > 0)
-            //{
-            //    if (_acceleration > 0.0f)
-            //    {
-            //        _acceleration *= -1.0f;
-            //    }
-            //    _shouldChangeSpeed = true;
-            //}
-            _currentSpeed = 0.0f;
-            _shouldMove = false;
         }
 
         private void MoveGrounds()
@@ -119,6 +90,40 @@ namespace SlimeRpg
             {
                 MoveGrounds();
             }
+        }
+
+        #endregion
+
+
+        #region IGroundMovementControll
+
+        public void StartMovement()
+        {
+            if (_currentSpeed < _normalSpeed)
+            {
+                if (_acceleration < 0.0f)
+                {
+                    _acceleration *= -1.0f;
+                }
+                _shouldChangeSpeed = true;
+                _shouldMove = true;
+            }
+            //_currentSpeed = _normalSpeed;
+            //_shouldMove = true;
+        }
+
+        public void StopMovement()
+        {
+            if (_currentSpeed > 0)
+            {
+                if (_acceleration > 0.0f)
+                {
+                    _acceleration *= -1.0f;
+                }
+                _shouldChangeSpeed = true;
+            }
+            //_currentSpeed = 0.0f;
+            //_shouldMove = false;
         }
 
         #endregion

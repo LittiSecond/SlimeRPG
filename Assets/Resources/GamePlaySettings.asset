@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143219de419110e4892aa03e14ce5842, type: 3}
   m_Name: GamePlaySettings
   m_EditorClassIdentifier: 
-  GroundSpeed: 2
+  GroundSpeed: 1.5
   ChangeSpeedDuration: 2
   SpawnLogickData: {fileID: 11400000, guid: bcea3c394c811624cb597c1a6de1d09e, type: 2}
