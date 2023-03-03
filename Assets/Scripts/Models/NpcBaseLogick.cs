@@ -8,6 +8,7 @@ namespace SlimeRpg
     {
         #region Fields
 
+        [SerializeField] private HpIndicator _hpIndicator;
         [SerializeField] private float _speed;
         [SerializeField] private float _selfDestroyXPosition;
         [SerializeField] private int _maxHealth;
@@ -28,6 +29,11 @@ namespace SlimeRpg
         {
             _npcHealth = new NpcHealth(_maxHealth);
             _npcHealth.OnHealthEnd += OnHealthEnd;
+        }
+
+        protected virtual void Start()
+        {
+            _hpIndicator.SetIHealth(_npcHealth);
         }
 
         #endregion

@@ -3,7 +3,7 @@
 
 namespace SlimeRpg
 {
-    public sealed class NpcHealth : ITakeDamag
+    public sealed class NpcHealth : ITakeDamag, IHealth
     {
         #region Fields
 
