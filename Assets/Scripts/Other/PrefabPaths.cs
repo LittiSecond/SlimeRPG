@@ -8,7 +8,10 @@ namespace SlimeRpg
         public static readonly Dictionary<string, string> Paths = new Dictionary<string, string>()
         {
             {
-                "PlayerCharacter", "Prefabs/PlayerCharacter"
+                "Enemy1", "Prefabs/Enemy1"
+            },
+            {
+                "Slime", "Prefabs/Slime"
             },
             {
                 "Ground1", "Prefabs/Ground/Ground1"

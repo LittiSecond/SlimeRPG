@@ -25,13 +25,18 @@ namespace SlimeRpg
             WorldBuildLogick worldBuildLogick = new WorldBuildLogick();
             WorldBuilder worldBuilder = new WorldBuilder(groundMovementController, worldBuildLogick);
 
+            SlimeManager slimeManager = new SlimeManager();
+
+            NpcManager npcManager = new NpcManager(gamePlaySettings);
+
             _executeControllers = new IExecutable[]
             {
                 groundMovementController,
-                worldBuilder
+                worldBuilder,
+                npcManager
             };
 
-            Services.Instance.GameStateManager.SetControllers(worldBuilder, groundMovementController);
+            Services.Instance.GameStateManager.SetControllers(worldBuilder, groundMovementController, slimeManager, npcManager);
         }
 
         #endregion

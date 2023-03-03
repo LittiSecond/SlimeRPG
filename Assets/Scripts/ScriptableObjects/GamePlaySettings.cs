@@ -8,6 +8,6 @@ namespace SlimeRpg
     {
         public float GroundSpeed;
         public float ChangeSpeedDuration;
-
+        public EnemySpawnLogickData SpawnLogickData;
     }
 }

@@ -27,6 +27,7 @@ namespace SlimeRpg
         public static Services Instance => _instance.Value;
         public ObjectPool ObjectPool { get; private set; }
         public GameStateManager GameStateManager { get; private set; }
+        public Factory Factory { get; private set; }
 
         #endregion
 
@@ -37,6 +38,7 @@ namespace SlimeRpg
         {
             ObjectPool = new ObjectPool();
             GameStateManager = new GameStateManager();
+            Factory = new Factory();
         }
 
         #endregion
