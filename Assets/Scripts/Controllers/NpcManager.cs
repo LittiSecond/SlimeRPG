@@ -24,7 +24,7 @@ namespace SlimeRpg
         public NpcManager(GamePlaySettings gps, IGroundMovementControll gmc)
         {
             _npcOnField = new List<NpcBaseLogick>();
-            _npcSpawner = new NpcSpawner(this, OnDestroyNpc, gps.SpawnLogickData);
+            _npcSpawner = new NpcSpawner(this, OnDestroyNpc, gps);
             _groundMovementControll = gmc;
         }
 

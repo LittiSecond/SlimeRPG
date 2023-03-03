@@ -9,15 +9,21 @@ namespace SlimeRpg
         #region Fields
 
         [SerializeField] private HpIndicator _hpIndicator;
+        [SerializeField] private Fist _fist;
+        [SerializeField] private Animator _fistAnimator;
         [SerializeField] private float _speed;
         [SerializeField] private float _selfDestroyXPosition;
         [SerializeField] private int _maxHealth;
+        [SerializeField] private int _attackPower;
 
         public event Action<NpcBaseLogick> OnDestroy;
 
         private NpcHealth _npcHealth;
+        private NpcMovement _npcMovement;
+        private NpcMeleeAttack _meleeAttack;
 
-        protected bool _isEnabled;
+        private Vector3 _slimePosition;
+        private bool _isEnabled;
         private bool _isDestroyed;
 
         #endregion
@@ -25,13 +31,17 @@ namespace SlimeRpg
 
         #region UnityMethods
 
-        protected virtual void Awake()
+        private  void Awake()
         {
             _npcHealth = new NpcHealth(_maxHealth);
             _npcHealth.OnHealthEnd += OnHealthEnd;
+            _npcMovement = new NpcMovement(transform);
+            _npcMovement.Speed = _speed;
+            _fist.SetAttackPower(_attackPower);
+            _meleeAttack = new NpcMeleeAttack(_fist.transform, _npcMovement, _fistAnimator);
         }
 
-        protected virtual void Start()
+        private void Start()
         {
             _hpIndicator.SetIHealth(_npcHealth);
         }
@@ -48,11 +58,14 @@ namespace SlimeRpg
             ReturnToPool();
         }
 
-        public virtual void Initialize()
+        public virtual void Initialize(Vector3 slimePosition)
         {
             _isEnabled = true;
             _isDestroyed = false;
+            _slimePosition = slimePosition;
             _npcHealth.ResetHealth();
+            _npcMovement.Initialize(_slimePosition);
+            _meleeAttack.Initialize();
         }
 
         private void OnHealthEnd()
@@ -87,7 +100,8 @@ namespace SlimeRpg
                 }
                 else
                 {
-                    transform.Translate(-_speed * Time.deltaTime, 0.0f, 0.0f, Space.World);
+                    _npcMovement.Execute();
+                    _meleeAttack.Execute();
                 }
             }
         }

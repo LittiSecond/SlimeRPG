@@ -16,6 +16,7 @@ namespace SlimeRpg
         private EnemySpawnLogickData _spawnLogickData;
 
         private Action<NpcBaseLogick> _onDestroyListener;
+        private Vector3 _slimePosition;
         private float _timeCounter;
 
 
@@ -26,11 +27,12 @@ namespace SlimeRpg
 
         #region ClassLifeCycles
 
-        public NpcSpawner(NpcManager nm, Action<NpcBaseLogick> onDestroyListener, EnemySpawnLogickData esld)
+        public NpcSpawner(NpcManager nm, Action<NpcBaseLogick> onDestroyListener, GamePlaySettings gps)
         {
             _npcManager = nm;
-            _spawnLogickData = esld;
+            _spawnLogickData = gps.SpawnLogickData;
             _onDestroyListener = onDestroyListener;
+            _slimePosition = gps.SlimePosition;
         }
 
         #endregion
@@ -60,7 +62,7 @@ namespace SlimeRpg
                     npc.transform.position = _spawnLogickData.SpawnPosition;
                     npc.OnDestroy += _onDestroyListener;
                     _npcManager.AddNpc(npc);
-                    npc.Initialize();
+                    npc.Initialize(_slimePosition);
                 }
             }
         }

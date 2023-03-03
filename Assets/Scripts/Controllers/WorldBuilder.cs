@@ -40,7 +40,10 @@ namespace SlimeRpg
         public void StartWorldBuilding()
         {
             BuildGroundPart(FIRST_GROUND_X_POZITION);
-            _isEnabled = _groundsInWorld.Count > 0;
+            if (_groundsInWorld.Count > 0)
+            {
+                _isEnabled = true;
+            }
         }
 
         private void BuildGroundPart(float xPosition)
