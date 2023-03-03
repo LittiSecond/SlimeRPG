@@ -4,17 +4,20 @@ using UnityEngine;
 
 namespace SlimeRpg
 {
-    public class NpcBaseLogick : PooledObject, IExecutable
+    public class NpcBaseLogick : PooledObject, IExecutable, ITakeDamag
     {
         #region Fields
 
         [SerializeField] private float _speed;
         [SerializeField] private float _selfDestroyXPosition;
+        [SerializeField] private int _maxHealth;
 
         public event Action<NpcBaseLogick> OnDestroy;
 
+        private NpcHealth _npcHealth;
 
         protected bool _isEnabled;
+        private bool _isDestroyed;
 
         #endregion
 
@@ -23,7 +26,8 @@ namespace SlimeRpg
 
         protected virtual void Awake()
         {
-
+            _npcHealth = new NpcHealth(_maxHealth);
+            _npcHealth.OnHealthEnd += OnHealthEnd;
         }
 
         #endregion
@@ -41,6 +45,19 @@ namespace SlimeRpg
         public virtual void Initialize()
         {
             _isEnabled = true;
+            _isDestroyed = false;
+            _npcHealth.ResetHealth();
+        }
+
+        private void OnHealthEnd()
+        {
+            _isDestroyed = true;
+        }
+
+        private void DestroyItselfWithReward()
+        {
+
+            DestroyItSelf();
         }
 
         #endregion
@@ -50,6 +67,12 @@ namespace SlimeRpg
 
         public void Execute()
         {
+            if (_isDestroyed)
+            {
+                DestroyItselfWithReward();
+                _isDestroyed = false;
+            }
+
             if (_isEnabled)
             {
                 if (transform.position.x <= _selfDestroyXPosition)
@@ -61,6 +84,16 @@ namespace SlimeRpg
                     transform.Translate(-_speed * Time.deltaTime, 0.0f, 0.0f, Space.World);
                 }
             }
+        }
+
+        #endregion
+
+
+        #region ITakeDamag
+
+        public void TakeDamage(int amount)
+        {
+            _npcHealth.TakeDamage(amount);
         }
 
         #endregion
