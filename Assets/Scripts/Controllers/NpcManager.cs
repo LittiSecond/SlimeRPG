@@ -55,6 +55,7 @@ namespace SlimeRpg
                 _npcOnField[i].DestroyItSelf();
             }
             _npcOnField.Clear();
+            _groundMovementControll.StartMovement();
         }
 
         public void AddNpc(NpcBaseLogick newNpc)

@@ -43,16 +43,16 @@ namespace SlimeRpg
 
         public void Initialize()
         {
+            ResetHealth();
             if (!_isInitialized)
             {
                 _isInitialized = true;
-                ResetHealth();
                 SlimeBody slimeBody = Services.Instance.Factory.GetSlimeBody();
                 _hpIndicator = slimeBody.GetHpIndicator();
                 _hpIndicator.SetIHealth(this);
                 slimeBody.SetTekerDamag(this);
-
             }
+            _hpIndicator.ResetValues();
         }
 
         public void ResetHealth()
@@ -78,7 +78,7 @@ namespace SlimeRpg
 
                 if (_currentHealth == 0)
                 {
-                    //OnHealthEnd?.Invoke();
+                    Services.Instance.GameStateManager.SetCharacterDeadState();
                 }
             }
         }

@@ -28,6 +28,7 @@ namespace SlimeRpg
         public ObjectPool ObjectPool { get; private set; }
         public GameStateManager GameStateManager { get; private set; }
         public Factory Factory { get; private set; }
+        public UiManager UiManager { get; private set; }
 
         #endregion
 
@@ -39,6 +40,7 @@ namespace SlimeRpg
             ObjectPool = new ObjectPool();
             GameStateManager = new GameStateManager();
             Factory = new Factory();
+            UiManager = new UiManager();
         }
 
         #endregion

@@ -1,4 +1,7 @@
-﻿namespace SlimeRpg
+﻿using UnityEngine;
+
+
+namespace SlimeRpg
 {
     public sealed class GameStateManager
     {
@@ -36,6 +39,26 @@
             _npcManager.StartNpcSpawn();
             _slimeAttack.On();
         }
+
+        public void SetCharacterDeadState()
+        {
+            Time.timeScale = 0.0f;
+            Services.Instance.UiManager.SetCharacterDeadState();
+            _npcManager.StopNpcSpawn();
+        }
+
+        public void SetIngameState()
+        {
+            Time.timeScale = 1.0f;
+            Services.Instance.UiManager.SetGameState();
+            _npcManager.ClearNpc();
+            _npcManager.StartNpcSpawn();
+            _slimeHealth.Initialize();
+        }
+
+
+
+
 
         #endregion
     }
