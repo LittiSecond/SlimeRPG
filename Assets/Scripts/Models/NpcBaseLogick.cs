@@ -15,6 +15,7 @@ namespace SlimeRpg
         [SerializeField] private float _selfDestroyXPosition;
         [SerializeField] private int _maxHealth;
         [SerializeField] private int _attackPower;
+        [SerializeField] private int _rewardCost;
 
         public event Action<NpcBaseLogick> OnDestroy;
 
@@ -75,7 +76,7 @@ namespace SlimeRpg
 
         private void DestroyItselfWithReward()
         {
-
+            Services.Instance.CharacterIntermediary.SendReward(_rewardCost);
             DestroyItSelf();
         }
 

@@ -14,7 +14,7 @@ namespace SlimeRpg
         private SlimeBody _slimeBody;
         private UiIngameScreen _inGameScreen;
         private Transform _canvasTransform;
-
+        private UiCoinIndicator _uiCoinIndicator;
 
         #endregion
 
@@ -60,6 +60,15 @@ namespace SlimeRpg
             return _inGameScreen;
         }
 
+        public UiCoinIndicator GetCoinIndicator()
+        {
+            if (_uiCoinIndicator == null)
+            {
+                _uiCoinIndicator = _canvasTransform.GetComponentInChildren<UiCoinIndicator>();
+            }
+
+            return _uiCoinIndicator;
+        }
 
 
         #endregion

@@ -32,6 +32,8 @@ namespace SlimeRpg
             SlimeAttack slimeAttack = new SlimeAttack(gamePlaySettings, npcManager);
             SlimeHealth slimeHealth = new SlimeHealth(gamePlaySettings);
 
+            CoinsController coinsController = new CoinsController();
+
             _executeControllers = new IExecutable[]
             {
                 groundMovementController,
@@ -41,7 +43,8 @@ namespace SlimeRpg
             };
 
             Services.Instance.GameStateManager.SetControllers(worldBuilder, groundMovementController, slimeManager, 
-                npcManager, slimeAttack, slimeHealth);
+                npcManager, slimeAttack, slimeHealth, coinsController);
+            Services.Instance.CharacterIntermediary.SetControllers(coinsController);
         }
 
         #endregion

@@ -492,6 +492,7 @@ MonoBehaviour:
   _selfDestroyXPosition: -2
   _maxHealth: 5
   _attackPower: 3
+  _rewardCost: 2
 --- !u!95 &5775840205699862376
 Animator:
   serializedVersion: 4

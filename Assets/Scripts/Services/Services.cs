@@ -29,6 +29,7 @@ namespace SlimeRpg
         public GameStateManager GameStateManager { get; private set; }
         public Factory Factory { get; private set; }
         public UiManager UiManager { get; private set; }
+        public CharacterIntermediary CharacterIntermediary { get; private set; }
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace SlimeRpg
             GameStateManager = new GameStateManager();
             Factory = new Factory();
             UiManager = new UiManager();
+            CharacterIntermediary = new CharacterIntermediary();
         }
 
         #endregion

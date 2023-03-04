@@ -3248,6 +3248,7 @@ GameObject:
   - component: {fileID: 2118062636}
   - component: {fileID: 2118062635}
   - component: {fileID: 2118062634}
+  - component: {fileID: 2118062637}
   m_Layer: 5
   m_Name: CoinIndicator
   m_TagString: Untagged
@@ -3329,3 +3330,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 1
   m_AspectRatio: 3
+--- !u!114 &2118062637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118062632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decb249f82afbaf4cb57cca3607f1279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1818962845}

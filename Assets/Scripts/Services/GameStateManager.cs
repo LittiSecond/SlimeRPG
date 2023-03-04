@@ -13,6 +13,7 @@ namespace SlimeRpg
         private NpcManager _npcManager;
         private SlimeAttack _slimeAttack;
         private SlimeHealth _slimeHealth;
+        private CoinsController _coinsController;
 
         #endregion
 
@@ -20,7 +21,7 @@ namespace SlimeRpg
         #region Methods
 
         public void SetControllers(WorldBuilder wb, GroundMovementController gmc, SlimeManager sm, 
-            NpcManager nm, SlimeAttack sa, SlimeHealth sh)
+            NpcManager nm, SlimeAttack sa, SlimeHealth sh, CoinsController cc)
         {
             _worldBuilder = wb;
             _groundMovementController = gmc;
@@ -28,6 +29,7 @@ namespace SlimeRpg
             _npcManager = nm;
             _slimeAttack = sa;
             _slimeHealth = sh;
+            _coinsController = cc;
         }
 
         public void StartGame()
@@ -38,6 +40,7 @@ namespace SlimeRpg
             _slimeHealth.Initialize();
             _npcManager.StartNpcSpawn();
             _slimeAttack.On();
+            _coinsController.Initialize();
         }
 
         public void SetCharacterDeadState()
