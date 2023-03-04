@@ -25,12 +25,13 @@ namespace SlimeRpg
 
         private Vector3 _bulletStartPosition;
         private readonly INpcLocator _npcLocator;
+        private readonly IStatPower _attackPower;
+        private readonly IStatPower _attackSpeed;
         private float _slimeXPosition;
-        private int _attackPower;
+
         private float _bulletSpeed;
         private float _range;
 
-        private float _attackSpeed;
         private float _intervalMultipler;
 
         private float _loadInterval;
@@ -43,13 +44,13 @@ namespace SlimeRpg
 
         #region ClassLifeCycles
 
-        public SlimeAttack(GamePlaySettings gps, INpcLocator locator)
+        public SlimeAttack(GamePlaySettings gps, INpcLocator locator, IStatPower attackStatPower, IStatPower attackSpeedStatPower)
         {
             _slimeXPosition = gps.SlimePosition.x;
-            _attackPower = gps.BaseAttackPower;
+            _attackPower = attackStatPower;
             _bulletSpeed = gps.BulletSpeed;
             _range = gps.AttackRange;
-            _attackSpeed = gps.BaseAttackSpeed;
+            _attackSpeed = attackSpeedStatPower;
             _intervalMultipler = gps.AttackIntervalMultipler;
 
             _npcLocator = locator;
@@ -101,7 +102,7 @@ namespace SlimeRpg
             PooledObject pooledObject = Services.Instance.ObjectPool.GetObjectOfType(BULLET_PREFAB_ID);
             Bullet bullet = pooledObject as Bullet;
             bullet.SetPosition(_bulletStartPosition);
-            bullet.Kick(targetPosition, _attackPower, _bulletSpeed, SceneLayers.Npc);
+            bullet.Kick(targetPosition, _attackPower.Power, _bulletSpeed, SceneLayers.Npc);
         }
 
         private void StartLoading()
@@ -113,7 +114,7 @@ namespace SlimeRpg
 
         private void CalculateLoadInterval()
         {
-            _loadInterval = 1 / _attackSpeed * _intervalMultipler;
+            _loadInterval = 1.0f / _attackSpeed.Power * _intervalMultipler;
         }
 
         private void LoadBulletStartPosition()

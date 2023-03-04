@@ -12,7 +12,7 @@ namespace SlimeRpg
 
         private HpIndicator _hpIndicator;
 
-        private int _maxHealth;
+        private IStatPower _maxHealth;
         private int _currentHealth;
 
         private bool _isInitialized;
@@ -24,16 +24,16 @@ namespace SlimeRpg
 
         public int Health { get => _currentHealth; }
 
-        public int MaxHealth { get => _maxHealth; }
+        public int MaxHealth { get => _maxHealth.Power; }
 
         #endregion
 
 
         #region ClassLifeCycles
 
-        public SlimeHealth(GamePlaySettings gps)
+        public SlimeHealth(IStatPower healthStatPower)
         {
-            _maxHealth = gps.BaseSlimeHealth;
+            _maxHealth = healthStatPower;
         }
 
         #endregion
@@ -57,7 +57,7 @@ namespace SlimeRpg
 
         public void ResetHealth()
         {
-            _currentHealth = _maxHealth;
+            _currentHealth = _maxHealth.Power;
         }
 
         #endregion

@@ -10,10 +10,11 @@ namespace SlimeRpg
         public float ChangeSpeedDuration;
         public EnemySpawnLogickData SpawnLogickData;
         public Vector3 SlimePosition;
-        [Header("Slime stats: base values")]
-        public int BaseSlimeHealth;
-        public int BaseAttackPower;
-        public int BaseAttackSpeed;
+        [Header("Slime stats")]
+        public StatDescriptor AttackStat;
+        public StatDescriptor AttackSpeedStat;
+        public StatDescriptor HealthStat;
+
         [Space(20)]
         public float AttackIntervalMultipler;
         public float AttackRange;

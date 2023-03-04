@@ -7,6 +7,9 @@ namespace SlimeRpg
     {
         #region Fields
 
+
+        public event Action<int> OnCashChanged;
+
         private Ui.UiCoinIndicator _uiIndicator;
 
         private int _coinCounter;
@@ -28,6 +31,7 @@ namespace SlimeRpg
             if (_isInitialized)
             {
                 _coinCounter += amount;
+                OnCashChanged?.Invoke(_coinCounter);
                 _uiIndicator.SetValue(_coinCounter);
             }
         }
@@ -37,6 +41,19 @@ namespace SlimeRpg
             _uiIndicator = Services.Instance.Factory.GetCoinIndicator();
             _uiIndicator.SetValue(_coinCounter);
             _isInitialized = true;
+        }
+
+        public bool SpendCoins(int amount)
+        {
+            bool isSpended = false;
+            if (amount <= _coinCounter)
+            {
+                _coinCounter -= amount;
+                OnCashChanged?.Invoke(_coinCounter);
+                _uiIndicator.SetValue(_coinCounter);
+                isSpended = true;
+            }
+            return isSpended;
         }
 
         #endregion

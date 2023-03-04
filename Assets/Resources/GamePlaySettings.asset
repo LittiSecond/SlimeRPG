@@ -16,9 +16,18 @@ MonoBehaviour:
   ChangeSpeedDuration: 2
   SpawnLogickData: {fileID: 11400000, guid: bcea3c394c811624cb597c1a6de1d09e, type: 2}
   SlimePosition: {x: -1, y: 0.2, z: -6}
-  BaseSlimeHealth: 10
-  BaseAttackPower: 2
-  BaseAttackSpeed: 2
-  AttackIntervalMultipler: 2
+  AttackStat:
+    BaseValue: 2
+    UpgradeCost: 5
+    UpgradeStep: 1
+  AttackSpeedStat:
+    BaseValue: 2
+    UpgradeCost: 6
+    UpgradeStep: 1
+  HealthStat:
+    BaseValue: 10
+    UpgradeCost: 4
+    UpgradeStep: 1
+  AttackIntervalMultipler: 2.2
   AttackRange: 1.8
   BulletSpeed: 3
