@@ -32,7 +32,7 @@ namespace SlimeRpg
             SlimeAttack slimeAttack = new SlimeAttack(gamePlaySettings, npcManager, attackStat, attackSpeedStat);
             SlimeHealth slimeHealth = new SlimeHealth(healthStat);
             CoinsController coinsController = new CoinsController();
-
+            StatsEnchanceControler statsEnchanceControler = new StatsEnchanceControler(attackStat, attackSpeedStat, healthStat, coinsController);
 
             _executeControllers = new IExecutable[]
             {
@@ -43,7 +43,7 @@ namespace SlimeRpg
             };
 
             Services.Instance.GameStateManager.SetControllers(worldBuilder, groundMovementController, slimeManager, 
-                npcManager, slimeAttack, slimeHealth, coinsController);
+                npcManager, slimeAttack, slimeHealth, coinsController, statsEnchanceControler);
             Services.Instance.CharacterIntermediary.SetControllers(coinsController);
         }
 

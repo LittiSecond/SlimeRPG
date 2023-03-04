@@ -15,6 +15,7 @@ namespace SlimeRpg
         private UiIngameScreen _inGameScreen;
         private Transform _canvasTransform;
         private UiCoinIndicator _uiCoinIndicator;
+        private UiUpgradePanel _uiUpgradePanel;
 
         #endregion
 
@@ -70,6 +71,15 @@ namespace SlimeRpg
             return _uiCoinIndicator;
         }
 
+        public UiUpgradePanel GetUiUpgradePanel()
+        {
+            if (_uiUpgradePanel == null)
+            {
+                _uiUpgradePanel = _canvasTransform.GetComponentInChildren<UiUpgradePanel>();
+            }
+
+            return _uiUpgradePanel;
+        }
 
         #endregion
     }
